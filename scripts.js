@@ -1,6 +1,7 @@
 const writtenName = document.getElementById('input-text');
 const saveButton = document.getElementById('saveButton');
 const purchaseList = document.getElementById('purchaseList')
+const purchasedList = document.getElementById('purchasedList')
 let counter = 0;
 
 saveButton.addEventListener('click', addPurchese);
@@ -24,16 +25,34 @@ function addPurchese(event){
                     const label = document.createElement('label');
                     label.setAttribute('for', checkboxInput.id);
 
+                    label.addEventListener('click', function(event){
+                        const checkboxInput = event.currentTarget.querySelector('.checkbox-input');
+                        const customizedCheckbox = event.currentTarget.querySelector('.checkbox-customizado');
+                        const itemName = event.currentTarget.closest('li').querySelector('#itemName');
+
+                        if (checkboxInput.checked){
+                            customizedCheckbox.classList.add('checked');
+                            itemName.style.textDecoration = 'line-through'
+                            purchasedList.appendChild(itemList);
+
+                        } else{
+                            customizedCheckbox.classList.remove('checked');
+                            itemName.style.textDecoration = 'none';
+                            purchaseList.appendChild(itemList);
+                        }
+                    })
+
                     const customizedCheckbox = document.createElement('div');
                     customizedCheckbox.classList.add('checkbox-customizado');
 
                     label.appendChild(checkboxInput);
                     label.appendChild(customizedCheckbox);
                     checkboxContainer.appendChild(label);
-                    
+
                 containerName.appendChild(checkboxContainer);
 
                 const purchaseName = document.createElement('p');
+                purchaseName.id = 'itemName';
                 purchaseName.innerText = writtenName.value;
                 containerName.appendChild(purchaseName);
             purchase.appendChild(containerName);
@@ -57,5 +76,14 @@ function addPurchese(event){
             purchase.appendChild(containerButtons);
 
         itemList.appendChild(purchase);
+        const date = document.createElement('p');
+
+        const weekday = new Date().toLocaleDateString('pt-BR', { weekday: 'long' });
+        const weekdayCapitalized = weekday.charAt(0).toUpperCase() + weekday.slice(1);
+
+        date.innerText = 
+        `${weekdayCapitalized} (${new Date().toLocaleDateString()}) às ${new Date().toLocaleTimeString("pt-BR", {hour: "numeric", minute:'numeric'})}`
+        itemList.appendChild(date);
+        
     purchaseList.appendChild(itemList);
 }
