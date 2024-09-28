@@ -1,33 +1,36 @@
 const writtenName = document.getElementById('input-text');
 const saveButton = document.getElementById('saveButton');
 const purchaseList = document.getElementById('purchaseList')
-let contador = 0;
+let counter = 0;
 
 saveButton.addEventListener('click', addPurchese);
 
 function addPurchese(event){
     event.preventDefault()
-    console.log('funcionando')
-
+    
     const itemList = document.createElement('li');
         const purchase = document.createElement('div');
         purchase.classList.add('purchase');
 
             const containerName = document.createElement('div');
                 const checkboxContainer = document.createElement('div');
-                checkboxContainer.classList.add('checkbox-container')
-                    const label = document.createElement('label');
-                    label.setAttribute("for", checkboxInput.id);
-                        const checkboxInput = document.createElement('input');
-                        checkboxInput.type = 'checkbox';
-                        checkboxInput.classList.add('checkbox-input');
-                        checkboxInput.id = 'checkbox-' + counter++;
-                        label.appendChild(checkboxInput);
+                checkboxContainer.classList.add('checkbox-container');
 
-                        const checkboxCustomizado = document.createElement(div)
-                        checkboxCustomizado.classList.add('checkbox-customizado')
-                        label.appendChild(checkboxCustomizado);
-                    checkboxContainer.appendChild(label)
+                    const checkboxInput = document.createElement('input');
+                    checkboxInput.type = 'checkbox';
+                    checkboxInput.classList.add('checkbox-input');
+                    checkboxInput.id = 'checkbox-' + counter++;
+
+                    const label = document.createElement('label');
+                    label.setAttribute('for', checkboxInput.id);
+
+                    const customizedCheckbox = document.createElement('div');
+                    customizedCheckbox.classList.add('checkbox-customizado');
+
+                    label.appendChild(checkboxInput);
+                    label.appendChild(customizedCheckbox);
+                    checkboxContainer.appendChild(label);
+                    
                 containerName.appendChild(checkboxContainer);
 
                 const purchaseName = document.createElement('p');
