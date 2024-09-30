@@ -19,6 +19,8 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    font-family: var(--fonte-texto);
 }
 main{
     display: flex;
@@ -83,7 +85,6 @@ ul{
 }
 li{
     list-style-type: none;
-    font-family: var(--fonte-texto);
 }
 .purchase{
     display: flex;
