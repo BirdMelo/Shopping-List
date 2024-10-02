@@ -33,7 +33,7 @@ main{
     margin-top: clamp(40px,10vw,64px);
 
     padding: 56px clamp(0px, calc(56 * ((100vw - 320px) / 400)), 56px);
-
+    
     background-color: var(--neutro);
     border-radius: 16px;
 

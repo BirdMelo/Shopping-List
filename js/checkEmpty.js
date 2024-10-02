@@ -1,5 +1,4 @@
 const listWarning = document.getElementById('emptyList_warning');
-const purchasedList = document.getElementById('purchasedList');
 
 export function checkEmptyList(list){
     if (list.childElementCount === 0){
@@ -9,10 +8,11 @@ export function checkEmptyList(list){
     }
 }
 
-export function checkEmptyPurchased(){
-    if(purchasedList.childElementCount === 0){
-        purchasedList.style.display = 'block';
+export function checkEmptyPurchased(list){
+    console.log(list);
+    if(list.getElementsByTagName('li').length === 0){
+        list.style.display = 'none';
     }else{
-        purchasedList.style.display = 'block';
+        list.style.display = 'block';
     }
 }

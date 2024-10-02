@@ -1,4 +1,7 @@
+import {checkEmptyPurchased} from "./checkEmpty.js";
+
 const purchasedList = document.getElementById('purchasedList')
+const purchaseList = document.getElementById('purchaseList')
 let counter = 0;
 
 export function createItemList(item){
@@ -27,11 +30,13 @@ export function createItemList(item){
                             customizedCheckbox.classList.add('checked');
                             itemName.style.textDecoration = 'line-through'
                             purchasedList.appendChild(itemList);
+                            checkEmptyPurchased(purchasedList);
 
                         } else{
                             customizedCheckbox.classList.remove('checked');
                             itemName.style.textDecoration = 'none';
                             purchaseList.appendChild(itemList);
+                            checkEmptyPurchased(purchasedList);
                         }
                     })
 
