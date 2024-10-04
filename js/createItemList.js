@@ -1,4 +1,6 @@
-import {checkEmptyPurchased} from "./checkEmpty.js";
+import { deleteItem, editItem } from "./actionButtons.js";
+import {checkEmptyList} from "./checkEmpty.js";
+import { dateTime } from "./dateTime.js";
 
 const purchasedList = document.getElementById('purchasedList')
 const purchaseList = document.getElementById('purchaseList')
@@ -30,13 +32,13 @@ export function createItemList(item){
                             customizedCheckbox.classList.add('checked');
                             itemName.style.textDecoration = 'line-through'
                             purchasedList.appendChild(itemList);
-                            checkEmptyPurchased(purchasedList);
+                            checkEmptyList();
 
                         } else{
                             customizedCheckbox.classList.remove('checked');
                             itemName.style.textDecoration = 'none';
                             purchaseList.appendChild(itemList);
-                            checkEmptyPurchased(purchasedList);
+                            checkEmptyList();
                         }
                     })
 
@@ -59,28 +61,23 @@ export function createItemList(item){
                 const deleteButton = document.createElement('button');
                 deleteButton.classList.add('action-button');
                     const imgDelete = document.createElement('img');
-                    imgDelete.src = "./img/delete.svg";
-                    imgDelete.alt = "deletar";
+                        imgDelete.src = "./img/delete.svg";
+                        imgDelete.alt = "deletar";
                     deleteButton.appendChild(imgDelete);
+                    deleteButton.addEventListener('click', function () { deleteItem(itemList); });
                 containerButtons.appendChild(deleteButton);
 
                 const editButton = document.createElement('button');
                 editButton.classList.add('action-button');
                     const imgEdit = document.createElement('img');
-                    imgEdit.src = "./img/edit.svg";
-                    imgEdit.alt = "editar";
+                        imgEdit.src = "./img/edit.svg";
+                        imgEdit.alt = "editar";
                     editButton.appendChild(imgEdit);
+                    editButton.addEventListener('click', function() { editItem(itemList); })
                 containerButtons.appendChild(editButton);
             purchase.appendChild(containerButtons);
 
         itemList.appendChild(purchase);
-        const date = document.createElement('p');
-
-        const weekday = new Date().toLocaleDateString('pt-BR', { weekday: 'long' });
-        const weekdayCapitalized = weekday.charAt(0).toUpperCase() + weekday.slice(1);
-
-        date.innerText = 
-        `${weekdayCapitalized} (${new Date().toLocaleDateString()}) às ${new Date().toLocaleTimeString("pt-BR", {hour: "numeric", minute:'numeric'})}`
-        itemList.appendChild(date);
+        itemList.appendChild(dateTime());
         return itemList;
 }

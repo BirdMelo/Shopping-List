@@ -1,18 +1,17 @@
 const listWarning = document.getElementById('emptyList_warning');
+const purchaseList = document.getElementById('purchaseList');
+const purchasedList = document.getElementById('purchasedList');
 
-export function checkEmptyList(list){
-    if (list.childElementCount === 0){
+export function checkEmptyList(){
+    if (purchaseList.querySelectorAll('li').length === 0 && purchasedList.querySelectorAll('li').length === 0){
         listWarning.style.display = 'block';
     }else{
         listWarning.style.display = 'none';
     }
-}
 
-export function checkEmptyPurchased(list){
-    console.log(list);
-    if(list.getElementsByTagName('li').length === 0){
-        list.style.display = 'none';
+    if(purchasedList.querySelectorAll('li').length === 0){
+        purchasedList.style.display = 'none';
     }else{
-        list.style.display = 'block';
+        purchasedList.style.display = 'block';
     }
 }
